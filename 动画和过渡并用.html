@@ -1,0 +1,111 @@
+<!--
+ * @Author: canlong.shen
+ * @Date: 2021-04-26 17:17:35
+ * @LastEditors: your name
+ * @LastEditTime: 2021-04-28 14:42:04
+ * @Description: file content
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <style>
+        @keyframes comein {
+
+            0% {
+                transform: translateX(-100px);
+            }
+
+            100% {
+                transform: translateX(0px);
+            }
+
+        }
+
+        @keyframes comeout {
+
+            0% {
+                transform: translateX(0px);
+            }
+
+            100% {
+                transform: translateX(-100px);
+            }
+
+        }
+
+        .v-enter-from,
+        .v-leave-to {
+            opacity: 0;
+        }
+
+
+        .v-enter-to,
+        .v-leave-from {
+            opacity: 1;
+        }
+
+        .v-enter-active {
+            animation: comein 3s;
+            transition: opacity 8s ease-out;
+        }
+
+        .v-leave-active {
+            animation: comeout 3s;
+            transition: opacity 8s ease-out;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    isShow: false
+                }
+            },
+            methods: {
+                switchShow() {
+                    this.isShow = !this.isShow;
+                }
+            },
+            template: `
+             <div>
+            <transition>
+            <div v-if='isShow'>hello world</div>
+            </transition>
+            <transition type='animation'>
+            <div v-if='isShow'>按照动画时长</div>
+            </transition>
+            <transition type='transition'>
+            <div v-if='isShow'>按照过渡时长</div>
+            </transition>
+            <transition type='transition' :duration="1000" >
+            <div v-if='isShow'>指定时长</div>
+            </transition>
+            <transition type='transition' :duration="{enter:1000,leave:3000}" >
+            <div v-if='isShow'>传入对象指定时长</div>
+            </transition>
+            <button @click='switchShow'>切换</button>
+
+            </div>
+            
+            `
+        })
+
+        app.component("xxx", {
+
+        })
+
+        const vm = app.mount("#app")
+    </script>
+</body>
+
+</html>
