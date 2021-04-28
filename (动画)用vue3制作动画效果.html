@@ -1,0 +1,86 @@
+<!--
+ * @Author: canlong.shen
+ * @Date: 2021-04-26 17:17:35
+ * @LastEditors: your name
+ * @LastEditTime: 2021-04-28 13:36:17
+ * @Description: file content
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <style>
+        @keyframes comein {
+
+            0% {
+                transform: translateX(-100px);
+            }
+
+            100% {
+                transform: translateX(0px);
+            }
+
+        }
+
+        @keyframes comeout {
+
+            0% {
+                transform: translateX(0px);
+            }
+
+            100% {
+                transform: translateX(-100px);
+            }
+
+        }
+
+        .v-enter-active {
+            animation: comein 3s;
+        }
+
+        .v-leave-active {
+            animation: comeout 3s;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    isShow: false
+                }
+            },
+            methods: {
+                switchShow() {
+                    this.isShow = !this.isShow;
+                }
+            },
+            template: `
+             <div>
+            <transition>
+            <div v-if='isShow'>hello world</div>
+            </transition>
+            <button @click='switchShow'>切换</button>
+
+            </div>
+            
+            `
+        })
+
+        app.component("xxx", {
+
+        })
+
+        const vm = app.mount("#app")
+    </script>
+</body>
+
+</html>
