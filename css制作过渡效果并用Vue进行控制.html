@@ -1,0 +1,65 @@
+<!--
+ * @Author: canlong.shen
+ * @Date: 2021-04-26 17:17:35
+ * @LastEditors: your name
+ * @LastEditTime: 2021-04-28 11:42:16
+ * @Description: file content
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <style>
+        .transition {
+            transition: 3s background-color ease;
+        }
+
+        .red {
+            background-color: red;
+        }
+
+        .yellow {
+            background-color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    css: {
+                        transition: true,
+                        red: true,
+                        yellow: false
+                    },
+                }
+            },
+            methods: {
+                switchTran() {
+                    this.css.red = !this.css.red;
+                    this.css.yellow = !this.css.yellow;
+                }
+            },
+            template: `
+            <div :class='css'>hello world</div>
+            <button @click='switchTran'>切换颜色</button></button>
+            `
+        })
+
+        app.component("xxx", {
+
+        })
+
+        const vm = app.mount("#app")
+    </script>
+</body>
+
+</html>
