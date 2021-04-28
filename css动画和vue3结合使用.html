@@ -1,0 +1,76 @@
+<!--
+ * @Author: canlong.shen
+ * @Date: 2021-04-26 17:17:35
+ * @LastEditors: your name
+ * @LastEditTime: 2021-04-28 11:25:44
+ * @Description: file content
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <style>
+        .animation {
+            animation: leftToRight 3s;
+        }
+
+        @keyframes leftToRight {
+            0% {
+                transform: translateX(0px);
+            }
+
+            25% {
+                transform: translateX(20px);
+            }
+
+            50% {
+                transform: translateX(100px);
+            }
+
+            75% {
+                transform: translateX(20px);
+            }
+
+            100% {
+                transform: translateX(0px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    isAnimation: {
+                        animation: false
+                    }
+                }
+            },
+            methods: {
+                switchAnimation() {
+                    this.isAnimation.animation = !this.isAnimation.animation;
+                }
+            },
+            template: `
+            <div :class='isAnimation'>hello world</div>
+            <button @click='switchAnimation'> 切换动画状态</button>
+            `
+        })
+
+        app.component("xxx", {
+
+        })
+
+        const vm = app.mount("#app")
+    </script>
+</body>
+
+</html>
